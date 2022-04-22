@@ -1,6 +1,6 @@
 console.log('js working');
 
-$(document).ready();
+$(document).ready(onReady);
 
 function onReady() {
   console.log('jquery working');
