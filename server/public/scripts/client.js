@@ -10,7 +10,11 @@ function onReady() {
 // GET route to router
 
 function getTasks() {
-  $('#taskList').empty();
+  $('#homeTaskList').empty();
+  $('#yardTaskList').empty();
+  $('#errandTaskList').empty();
+  $('#workTaskList').empty();
+  $('#miscellaneousTaskList').empty();
   $.ajax({
     method: 'GET',
     url: '/tasks',
@@ -18,17 +22,67 @@ function getTasks() {
     .then((response) => {
       console.log('GET /tasks response', response);
       for (let task of response) {
-        if (task.type === 'Yard') {
-          $('#yardTaskList').append(`
-        <tr data-id = ${task.id}>
-            <td>${task.name}</td>
-            <td>${task.type}</td>
-            <td>${task.importance}</td>
-            <td><button class="completeButton">Complete</button></td>
-            <td><button class="deleteButton">Delete</button></td>
-            <td>${task.notes}</td>
-        </tr>
-        `);
+        switch (task.type) {
+          case 'Home':
+            $('#homeTaskList').append(`
+            <tr data-id = ${task.id}>
+                <td>${task.name}</td>
+                <td>${task.type}</td>
+                <td>${task.importance}</td>
+                <td><button class="completeButton">Complete</button></td>
+                <td><button class="deleteButton">Delete</button></td>
+                <td>${task.notes}</td>
+            </tr>
+            `);
+            break;
+          case 'Yard':
+            $('#yardTaskList').append(`
+            <tr data-id = ${task.id}>
+                <td>${task.name}</td>
+                <td>${task.type}</td>
+                <td>${task.importance}</td>
+                <td><button class="completeButton">Complete</button></td>
+                <td><button class="deleteButton">Delete</button></td>
+                <td>${task.notes}</td>
+            </tr>
+            `);
+            break;
+          case 'Errand':
+            $('#errandTaskList').append(`
+            <tr data-id = ${task.id}>
+                <td>${task.name}</td>
+                <td>${task.type}</td>
+                <td>${task.importance}</td>
+                <td><button class="completeButton">Complete</button></td>
+                <td><button class="deleteButton">Delete</button></td>
+                <td>${task.notes}</td>
+            </tr>
+            `);
+            break;
+          case 'Work':
+            $('#workTaskList').append(`
+            <tr data-id = ${task.id}>
+                <td>${task.name}</td>
+                <td>${task.type}</td>
+                <td>${task.importance}</td>
+                <td><button class="completeButton">Complete</button></td>
+                <td><button class="deleteButton">Delete</button></td>
+                <td>${task.notes}</td>
+            </tr>
+            `);
+            break;
+          case 'Miscellaneous':
+            $('#miscellaneousTaskList').append(`
+            <tr data-id = ${task.id}>
+                <td>${task.name}</td>
+                <td>${task.type}</td>
+                <td>${task.importance}</td>
+                <td><button class="completeButton">Complete</button></td>
+                <td><button class="deleteButton">Delete</button></td>
+                <td>${task.notes}</td>
+            </tr>
+                    `);
+            break;
         }
       }
     })
@@ -40,24 +94,37 @@ function getTasks() {
 // POST route to router
 
 function addTask() {
-  let taskToAdd = {
-    name: $('#taskNameInput').val(),
-    type: $('#taskTypeInput option:selected').text(),
-    importance: $('#taskImportance option:selected').text(),
-    notes: $('#notesInput').val(),
-  };
-  $.ajax({
-    method: 'POST',
-    url: '/tasks',
-    data: taskToAdd,
-  })
-    .then((response) => {
-      console.log('Response from server:', response);
-      getTasks();
+  if (
+    $('#taskNameInput').val() === '' ||
+    $('#taskTypeInput option:eq(0)').prop('selected', true) ||
+    $('#taskImportance option:eq(0)').prop('selected', true)
+  ) {
+    alert('Please fill all required fields.');
+    return;
+  } else {
+    let taskToAdd = {
+      name: $('#taskNameInput').val(),
+      type: $('#taskTypeInput option:selected').text(),
+      importance: $('#taskImportance option:selected').text(),
+      notes: $('#notesInput').val(),
+    };
+    $('#taskNameInput').val('');
+    $('#taskTypeInput option:eq(0)').prop('selected', true);
+    $('#taskImportance option:eq(0)').prop('selected', true);
+    $('#notesInput').val('');
+    $.ajax({
+      method: 'POST',
+      url: '/tasks',
+      data: taskToAdd,
     })
-    .catch((error) => {
-      console.log('Error in POST', error);
-    });
+      .then((response) => {
+        console.log('Response from server:', response);
+        getTasks();
+      })
+      .catch((error) => {
+        console.log('Error in POST', error);
+      });
+  }
 }
 
 // PUT route to router
