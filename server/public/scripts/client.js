@@ -96,8 +96,8 @@ function getTasks() {
 function addTask() {
   if (
     $('#taskNameInput').val() === '' ||
-    $('#taskTypeInput option:eq(0)').prop('selected', true) ||
-    $('#taskImportance option:eq(0)').prop('selected', true)
+    $('#taskTypeInput').val() === 'selectType' ||
+    $('#taskImportance').val() === 'selectImportance'
   ) {
     alert('Please fill all required fields.');
     return;
