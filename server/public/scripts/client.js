@@ -18,7 +18,8 @@ function getTasks() {
     .then((response) => {
       console.log('GET /tasks response', response);
       for (let task of response) {
-        $('#taskList').append(`
+        if (task.type === 'Yard') {
+          $('#yardTaskList').append(`
         <tr data-id = ${task.id}>
             <td>${task.name}</td>
             <td>${task.type}</td>
@@ -28,6 +29,7 @@ function getTasks() {
             <td>${task.notes}</td>
         </tr>
         `);
+        }
       }
     })
     .catch((error) => {
