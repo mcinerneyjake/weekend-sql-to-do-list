@@ -9,8 +9,31 @@ function onReady() {
 
 // GET route to router
 
-function refreshTasks() {
-  console.log('in refreshTasks');
+function getTasks() {
+  console.log('in getTasks');
+  $('#taskList').empty();
+  $.ajax({
+    method: 'GET',
+    url: '/tasks',
+  })
+    .then((response) => {
+      console.log('GET /tasks response', response);
+      for (let task of response) {
+        $('#taskList').append(`
+        <tr data-id = ${task.id}>
+            <td>${task.name}</td>
+            <td>${task.type}</td>
+            <td>${task.importance}</td>
+            <td><button>Complete Task</button></td>
+            <td><button>Delete Task</button></td>
+            <td>${task.notes}</td>
+        </tr>
+        `);
+      }
+    })
+    .catch((error) => {
+      console.log('Error in GET', error);
+    });
 }
 
 // POST route to router
@@ -30,7 +53,7 @@ function addTask() {
   })
     .then((respose) => {
       console.log('Response from server:', respose);
-      refreshTasks();
+      getTasks();
     })
     .catch((error) => {
       console.log('Error in POST', error);

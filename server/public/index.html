@@ -34,8 +34,16 @@
       <input id="notesInput" type="text" placeholder="Notes" />
     </div>
     <button id="submitButton">Submit</button>
-    <div id="taskListContainer">
-      <ul id="taskList"></ul>
-    </div>
+    <table id="taskListContainer">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Importance</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="taskList"></tbody>
+    </table>
   </body>
 </html>
