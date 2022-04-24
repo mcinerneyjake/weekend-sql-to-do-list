@@ -23,8 +23,8 @@ function getTasks() {
             <td>${task.name}</td>
             <td>${task.type}</td>
             <td>${task.importance}</td>
-            <td><button class="completeButton">Complete Task</button></td>
-            <td><button class="deleteButton">Delete Task</button></td>
+            <td><button class="completeButton">Complete</button></td>
+            <td><button class="deleteButton">Delete</button></td>
             <td>${task.notes}</td>
         </tr>
         `);
