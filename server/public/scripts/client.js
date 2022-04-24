@@ -1,16 +1,12 @@
-console.log('js working');
-
 $(document).ready(onReady);
 
 function onReady() {
-  console.log('jquery working');
   $('#submitButton').on('click', addTask);
 }
 
 // GET route to router
 
 function getTasks() {
-  console.log('in getTasks');
   $('#taskList').empty();
   $.ajax({
     method: 'GET',
@@ -39,7 +35,6 @@ function getTasks() {
 // POST route to router
 
 function addTask() {
-  console.log('submit button works');
   let taskToAdd = {
     name: $('#taskNameInput').val(),
     type: $('#taskTypeInput option:selected').text(),
