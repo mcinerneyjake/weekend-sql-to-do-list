@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// place routers here as needed
+const tasksRouter = require('./routes/task.router.js');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/tasks', tasksRouter);
 
 app.use(express.static('./server/public'));
 
