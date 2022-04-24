@@ -43,6 +43,23 @@ tasksRouter.post('/', (req, res) => {
 
 // Update task (complete = true or false) on database
 
+tasksRouter.put('/:taskId', (req, res) => {
+  let sqlQuery = `
+    UPDATE "tasks"
+        SET "complete"=$1
+        WHERE "id"=$2;
+    `;
+  let sqlValues = [true, req.params.taskId];
+  pool
+    .query(sqlQuery, sqlValues)
+    .then((dbResult) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Error in PUT /tasks db request:', error);
+    });
+});
+
 // Delete task from database
 
 tasksRouter.delete('/:taskId', (req, res) => {

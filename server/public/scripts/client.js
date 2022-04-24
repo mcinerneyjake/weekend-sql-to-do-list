@@ -60,7 +60,19 @@ function addTask() {
 
 // PUT route to router
 
-function updateTask() {}
+function updateTask() {
+  let taskIdToUpdate = $(this).closest('tr').data('id');
+  $.ajax({
+    method: 'PUT',
+    url: `/tasks/${taskIdToUpdate}`,
+  })
+    .then((response) => {
+      getTasks();
+    })
+    .catch((error) => {
+      console.log('Error in PUT', error);
+    });
+}
 
 // DELETE route to router
 
