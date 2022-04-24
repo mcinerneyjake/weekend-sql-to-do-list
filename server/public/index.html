@@ -11,5 +11,31 @@
   </head>
   <body>
     <h1>SQL To-Do List</h1>
+    <div id="inputs">
+      <input id="taskNameInput" type="text" placeholder="Name of To-Do" />
+      <label for="taskTypeInput"></label>
+      <select id="taskTypeInput" name="type">
+        <option value="selectType">Select Type:</option>
+        <option value="home">Home</option>
+        <option value="yard">Yard</option>
+        <option value="errand">Errand</option>
+        <option value="work">Work</option>
+        <option value="miscellaneous">Miscellaneous</option>
+      </select>
+      <label for="taskImportance"></label>
+      <select id="taskImportance" name="importance">
+        <option value="selectImportance">Select Importance:</option>
+        <option value="mostImportant">1 - Most Important</option>
+        <option value="moreImportant">2</option>
+        <option value="important">3</option>
+        <option value="lessImportant">4</option>
+        <option value="leastImportant">5 - Least Important</option>
+      </select>
+      <input id="notesInput" type="text" placeholder="Notes" />
+    </div>
+    <button id="submitButton">Submit</button>
+    <div id="taskListContainer">
+      <ul id="taskList"></ul>
+    </div>
   </body>
 </html>
