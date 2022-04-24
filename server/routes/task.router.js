@@ -45,4 +45,22 @@ tasksRouter.post('/', (req, res) => {
 
 // Delete task from database
 
+tasksRouter.delete('/:taskId', (req, res) => {
+  let taskToDelete = req.params.taskId;
+  let sqlQuery = `
+    DELETE FROM "tasks"
+        WHERE "id"=$1;
+    `;
+  let sqlValues = [taskToDelete];
+  pool
+    .query(sqlQuery, sqlValues)
+    .then((dbResult) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Error in POST /tasks db request:', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = tasksRouter;

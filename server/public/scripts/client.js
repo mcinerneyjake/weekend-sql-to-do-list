@@ -1,7 +1,10 @@
 $(document).ready(onReady);
 
 function onReady() {
+  getTasks();
   $('#submitButton').on('click', addTask);
+  $(document).on('click', '.deleteButton', deleteTask);
+  $(document).on('click', '.completeButton', updateTask);
 }
 
 // GET route to router
@@ -20,8 +23,8 @@ function getTasks() {
             <td>${task.name}</td>
             <td>${task.type}</td>
             <td>${task.importance}</td>
-            <td><button>Complete Task</button></td>
-            <td><button>Delete Task</button></td>
+            <td><button class="completeButton">Complete Task</button></td>
+            <td><button class="deleteButton">Delete Task</button></td>
             <td>${task.notes}</td>
         </tr>
         `);
@@ -46,8 +49,8 @@ function addTask() {
     url: '/tasks',
     data: taskToAdd,
   })
-    .then((respose) => {
-      console.log('Response from server:', respose);
+    .then((response) => {
+      console.log('Response from server:', response);
       getTasks();
     })
     .catch((error) => {
@@ -57,4 +60,20 @@ function addTask() {
 
 // PUT route to router
 
+function updateTask() {}
+
 // DELETE route to router
+
+function deleteTask() {
+  let taskIdToDelete = $(this).closest('tr').data('id');
+  $.ajax({
+    method: 'DELETE',
+    url: `/tasks/${taskIdToDelete}`,
+  })
+    .then((response) => {
+      getTasks();
+    })
+    .catch((error) => {
+      console.log('Error in DELETE', error);
+    });
+}
