@@ -25,7 +25,7 @@ h1 {
 
 h2 {
   background-color: #f0f4ef;
-  margin: 15px 400px 15px 400px;
+  margin: 30px 400px 15px 400px;
   border-radius: 8px;
   box-shadow: 1px 1px 8px 1px;
   text-align: center;
@@ -40,6 +40,10 @@ button {
 
 select {
   height: 28px;
+}
+
+.background {
+  background-color: #85aadb;
 }
 
 .completeButton {
