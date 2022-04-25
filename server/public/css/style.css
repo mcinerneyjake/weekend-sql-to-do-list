@@ -2,32 +2,60 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: solid black 1px;
 }
 
-html {
-  background-color: #4bc0d9;
+body {
+  background-color: #b4cded;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #344966;
+  margin: 0px 150px auto 150px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 8px 1px;
 }
 
 h1 {
   margin: 15px;
   text-align: center;
+  color: white;
 }
 
 h2 {
-  margin: 15px;
+  background-color: #f0f4ef;
+  margin: 15px 400px 15px 400px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 8px 1px;
   text-align: center;
+  text-decoration: underline;
 }
 
-#inputs {
-  display: grid;
-  grid-template-columns: repeat(5, 100px);
-  gap: 10px;
-  justify-self: center;
+button {
+  width: 75px;
   height: auto;
-  width: 500px;
+  border-radius: 8px;
+}
+
+select {
+  height: 28px;
+}
+
+.completeButton {
+  background-color: #97ad62;
+}
+
+.deleteButton {
+  background-color: #c94b4b;
+  color: white;
 }
 
 .completed {
-  background-color: green;
+  background-color: #bfcc94;
+}
+
+footer {
+  margin-top: 200px;
+  background-color: #f0f4ef;
 }
