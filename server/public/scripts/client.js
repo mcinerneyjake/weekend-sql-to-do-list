@@ -22,10 +22,11 @@ function getTasks() {
     .then((response) => {
       console.log('GET /tasks response', response);
       for (let task of response) {
-        switch (task.type) {
-          case 'Home':
-            $('#homeTaskList').append(`
-            <tr data-id = ${task.id}>
+        if (task.complete === true) {
+          switch (task.type) {
+            case 'Home':
+              $('#homeTaskList').append(`
+            <tr class="completed" data-id = ${task.id}>
                 <td>${task.name}</td>
                 <td>${task.type}</td>
                 <td>${task.importance}</td>
@@ -34,10 +35,10 @@ function getTasks() {
                 <td>${task.notes}</td>
             </tr>
             `);
-            break;
-          case 'Yard':
-            $('#yardTaskList').append(`
-            <tr data-id = ${task.id}>
+              break;
+            case 'Yard':
+              $('#yardTaskList').append(`
+            <tr class="completed" data-id = ${task.id}>
                 <td>${task.name}</td>
                 <td>${task.type}</td>
                 <td>${task.importance}</td>
@@ -46,10 +47,10 @@ function getTasks() {
                 <td>${task.notes}</td>
             </tr>
             `);
-            break;
-          case 'Errand':
-            $('#errandTaskList').append(`
-            <tr data-id = ${task.id}>
+              break;
+            case 'Errand':
+              $('#errandTaskList').append(`
+            <tr class="completed" data-id = ${task.id}>
                 <td>${task.name}</td>
                 <td>${task.type}</td>
                 <td>${task.importance}</td>
@@ -58,10 +59,10 @@ function getTasks() {
                 <td>${task.notes}</td>
             </tr>
             `);
-            break;
-          case 'Work':
-            $('#workTaskList').append(`
-            <tr data-id = ${task.id}>
+              break;
+            case 'Work':
+              $('#workTaskList').append(`
+            <tr class="completed" data-id = ${task.id}>
                 <td>${task.name}</td>
                 <td>${task.type}</td>
                 <td>${task.importance}</td>
@@ -70,10 +71,10 @@ function getTasks() {
                 <td>${task.notes}</td>
             </tr>
             `);
-            break;
-          case 'Miscellaneous':
-            $('#miscellaneousTaskList').append(`
-            <tr data-id = ${task.id}>
+              break;
+            case 'Miscellaneous':
+              $('#miscellaneousTaskList').append(`
+            <tr class="completed" data-id = ${task.id}>
                 <td>${task.name}</td>
                 <td>${task.type}</td>
                 <td>${task.importance}</td>
@@ -82,7 +83,71 @@ function getTasks() {
                 <td>${task.notes}</td>
             </tr>
                     `);
-            break;
+              break;
+          }
+        } else if (task.complete === false) {
+          switch (task.type) {
+            case 'Home':
+              $('#homeTaskList').append(`
+                <tr data-id = ${task.id}>
+                    <td>${task.name}</td>
+                    <td>${task.type}</td>
+                    <td>${task.importance}</td>
+                    <td><button class="completeButton">Complete</button></td>
+                    <td><button class="deleteButton">Delete</button></td>
+                    <td>${task.notes}</td>
+                </tr>
+                `);
+              break;
+            case 'Yard':
+              $('#yardTaskList').append(`
+                <tr data-id = ${task.id}>
+                    <td>${task.name}</td>
+                    <td>${task.type}</td>
+                    <td>${task.importance}</td>
+                    <td><button class="completeButton">Complete</button></td>
+                    <td><button class="deleteButton">Delete</button></td>
+                    <td>${task.notes}</td>
+                </tr>
+                `);
+              break;
+            case 'Errand':
+              $('#errandTaskList').append(`
+                <tr data-id = ${task.id}>
+                    <td>${task.name}</td>
+                    <td>${task.type}</td>
+                    <td>${task.importance}</td>
+                    <td><button class="completeButton">Complete</button></td>
+                    <td><button class="deleteButton">Delete</button></td>
+                    <td>${task.notes}</td>
+                </tr>
+                `);
+              break;
+            case 'Work':
+              $('#workTaskList').append(`
+                <tr data-id = ${task.id}>
+                    <td>${task.name}</td>
+                    <td>${task.type}</td>
+                    <td>${task.importance}</td>
+                    <td><button class="completeButton">Complete</button></td>
+                    <td><button class="deleteButton">Delete</button></td>
+                    <td>${task.notes}</td>
+                </tr>
+                `);
+              break;
+            case 'Miscellaneous':
+              $('#miscellaneousTaskList').append(`
+                <tr data-id = ${task.id}>
+                    <td>${task.name}</td>
+                    <td>${task.type}</td>
+                    <td>${task.importance}</td>
+                    <td><button class="completeButton">Complete</button></td>
+                    <td><button class="deleteButton">Delete</button></td>
+                    <td>${task.notes}</td>
+                </tr>
+                        `);
+              break;
+          }
         }
       }
     })
