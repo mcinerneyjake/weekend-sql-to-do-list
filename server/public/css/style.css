@@ -2,8 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: solid black 1px;
+}
+
+html {
+  background-color: #4bc0d9;
+}
+
+h1 {
+  margin: 15px;
+  text-align: center;
+}
+
+h2 {
+  margin: 15px;
+  text-align: center;
+}
+
+#inputs {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  gap: 10px;
+  justify-self: center;
+  height: auto;
+  width: 500px;
 }
 
 .completed {
-    background-color: green;
+  background-color: green;
 }
